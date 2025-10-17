@@ -1,4 +1,4 @@
-.PHONY: all format lint test tests test_watch integration_tests docker_tests help extended_tests install update clean spell_check spell_fix
+.PHONY: all format lint test tests test_watch integration_tests docker_tests help extended_tests install update clean spell_check spell_fix jupyter
 
 # Default target executed when no arguments are given to make.
 all: help
@@ -92,8 +92,15 @@ help:
 	@echo 'lint                         - run linters'
 	@echo 'spell_check                  - check spelling'
 	@echo 'spell_fix                    - fix spelling errors'
+	@echo ''
+	@echo 'Development:'
+	@echo 'dev                          - run langgraph dev server'
+	@echo 'jupyter                      - run jupyter lab without browser'
 
 
 
 dev:
 	uv run langgraph dev
+
+jupyter:
+	uv run jupyter lab --no-browser
