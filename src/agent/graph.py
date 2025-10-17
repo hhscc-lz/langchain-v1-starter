@@ -12,10 +12,12 @@ import os
 from dataclasses import dataclass
 
 from langchain.agents import create_agent
+from langchain.agents.middleware.human_in_the_loop import ToolConfig
 from langchain.tools import tool
 from langchain_qwq import ChatQwen
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.runtime import get_runtime
+from langchain.agents.middleware import HumanInTheLoopMiddleware
 
 # ==================== 系统提示词 ====================
 
@@ -93,6 +95,19 @@ graph = create_agent(
     model=model,
     prompt=SYSTEM_PROMPT,
     tools=[get_user_location, get_weather_for_location],
+    middleware=[
+        HumanInTheLoopMiddleware(
+            interrupt_on={
+                "get_user_location": ToolConfig(
+                    allow_accept=True,
+                    allow_edit=True,
+                    allow_reject=True,
+                    description="请确定要获取您的位置信息"
+                ),
+                "get_weather_for_location": True,
+            }
+        )
+    ],
     context_schema=Context,
     response_format=ResponseFormat,
     # checkpointer=checkpointer,
