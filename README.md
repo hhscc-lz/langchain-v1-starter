@@ -1,10 +1,10 @@
-# Chatbot Service
+# langchain-v1-starter
 
 基于 LangChain v1 和 LangGraph v1 的初始化项目基座。
 
 ## 项目简介
 
-这是一个智能网络受理助手的初始化项目，提供了基于 LangChain v1 框架的 AI Agent 基础架构。项目集成了 LangGraph 用于构建有状态的多步骤 AI 应用程序。
+这是一个 LangChain v1 初始化项目基座，提供了开箱即用的 AI Agent 基础架构。项目集成了 LangGraph 用于构建有状态的多步骤 AI 应用程序，帮助开发者快速启动 AI Agent 项目。
 
 ## 技术栈
 
